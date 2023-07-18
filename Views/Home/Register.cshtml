@@ -1,0 +1,60 @@
+@model Register
+@{
+    ViewData["Title"] = "Register";
+}
+
+@section scripts {
+    <script src="/modules/jquery/dist/jquery.js"></script>
+    <script src="/modules/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="/modules/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js"></script>
+    <script>
+        $(function() {
+            $("input.input-validation-error")
+            .closest(".form-group")
+            .addClass("has-danger")
+        });
+    </script>
+}
+
+<h2>Register</h2>
+
+<form class="p-1 m-1" asp-action="Register" method="post">
+    <div class="text-danger" asp-validation-summary="All"></div>
+    
+    <div class="form-group">
+        <label asp-for="UserName">User Name</label>
+        <div><span class="text-danger" asp-validation-for="UserName"></span></div>
+        <input asp-for="UserName" class="form-control"></input>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Email">Email</label>
+        <div><span class="text-danger" asp-validation-for="Email"></span></div>
+        <input asp-for="Email" class="form-control"></input>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Password">Password</label>
+        <div><span class="text-danger" asp-validation-for="Password"></span></div>
+        <input asp-for="Password" class="form-control"></input>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="RePassword">Password Tekrar</label>
+        <div><span class="text-danger" asp-validation-for="RePassword"></span></div>
+        <input asp-for="RePassword" class="form-control"></input>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="BirthDate">BirthDate</label>
+        <div><span class="text-danger" asp-validation-for="BirthDate"></span></div>
+        <input asp-for="BirthDate" class="form-control" type="text" asp-format="{0:d}"></input>
+    </div>
+
+    <div><span class="text-danger" asp-validation-for="TermsAccepted"></span></div>
+    <div class="radio form-group">
+        <input asp-for="TermsAccepted"></input>
+        <label asp-for="TermsAccepted" class="form-check-label">I accept terms and conditions</label>
+    </div>
+    <input type="submit" class="btn btn-primary" value="Register">
+</form>
